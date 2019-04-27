@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+    
+    <head>
+    </head>
+    
+        
+    <body>
+    </body>
+
+    
+    <script>
+        let body = document.querySelector('body');
+        let header = document.createElement('h1');
+        header.innerHTML = 'yo yo rock paper sizzle, first to thrizzle';
+        header.setAttribute('style', 'background: black; color: white; padding: 10px; font: 20pt sans-serif; width: 600px;');
+        body.appendChild(header);
+        
+        let rock = document.createElement('button');  
+        let paper = document.createElement('button');
+        let scissors = document.createElement('button');
+        rock.innerHTML= 'Rock';
+        scissors.innerHTML = 'Scissors';
+        paper.innerHTML = 'Paper';
+        
+        
+    
+        
+        
+        
+        
+        body.appendChild(rock);
+        body.appendChild(paper);
+        body.appendChild(scissors);
+        
+        
+        let playerScr = 0;
+        let compScr = 0;
+        
+        
+	    let computerPlay = function() {
+	        let x = Math.random();
+            
+	        if (x < 0.33) {return 'Rock'}
+	        else if (x < 0.67) {return 'Paper'}
+	    	else {return 'Scissors'}
+	    }
+
+		let playRound = function(playerSelection, computerSelection) {
+			if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'scissors') {return 'You win!'}
+			else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'rock') {return 'You win!'}
+			else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'paper') {return 'You win!'}
+			else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors') {return 'You lose!'}
+			else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'rock') {return 'You lose!'}
+			else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') 
+            {return 'You lose!'}
+			else if (playerSelection.toLowerCase() ===  computerSelection.toLowerCase()) {return 'Tie!'}
+
+		}
+
+		let game = function() {
+			
+			let body = document.querySelector('body');
+            
+			
+			
+				let playerSelection = prompt("rock paper or scissors, chief");
+				let computerSelection = computerPlay();
+				let result = playRound(playerSelection, computerSelection);
+				
+				
+		}
+        let lose = function() {
+            let message = document.createElement('p');
+            message.innerHTML = 'bummer dude, take the L.';
+            
+            body.appendChild(message);
+            compScr++;
+        }
+        
+        let defeat = function() {
+            let banner = document.createElement('h2');
+            banner.innerHTML = 'tough luck,sucka. you lose';
+            body.appendChild(banner);
+            playerScr = 0;
+            compScr = 0;
+        }
+        
+        let win = function() {
+            let message = document.createElement('p');
+            message.innerHTML = 'certified bucket-getter, homie';
+            
+            body.appendChild(message);
+            playerScr++;
+        }
+        
+        let victory = function() {
+            let banner = document.createElement('h2');
+            banner.innerHTML = 'play on, playa. thas a dub';
+            body.appendChild(banner);
+            playerScr = 0;
+            compScr = 0;
+        }
+        
+        let tie = function() {
+            let message = document.createElement('p');
+            message.innerHTML = 'jump-ball!';
+            body.appendChild(message);
+        }
+        
+        let btns = document.querySelectorAll('button');
+        btns.forEach((button) => {
+            
+            button.addEventListener('click', (e) => {
+                let move = button.innerHTML;
+                let cpuMove = computerPlay();
+                
+                let result = playRound(move, cpuMove);
+                 console.log(result);
+                if (result === 'You win!') {win()}
+				else if (result === 'Tie!') {tie()}
+				else {lose()}
+                
+                if (playerScr > 2) {victory()}
+                else  if (compScr > 2) {defeat()}
+                
+                
+            });
+        });
+
+
+        
+    </script>
+
+
+
+</html>

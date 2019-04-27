@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    
+    <head>
+    </head>
+    
+    
+    <script>
+	    let computerPlay = function() {
+	        let move;
+	        let x = Math.random();
+	        if (x < 0.33) {return 'Rock'}
+	        else if (x < 0.67) {return 'Paper'}
+	    	else {return 'Scissors'}
+	    }
+
+		let playRound = function(playerSelection, computerSelection) {
+			if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'scissors') {return 'You win!'}
+			else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'rock') {return 'You win! Paper beats Rock.'}
+			else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'paper') {return 'You win! Scissors beats Paper.'}
+			else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors') {return 'You lose! Scissors beats Paper.'}
+			else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'rock') {return 'You lose! Rock beats Scissors.'}
+			else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') {return 'You lose! Paper beats Rock.'}
+			else if (playerSelection.toLowerCase() ===  computerSelection.toLowerCase()) {return 'Tie!'}
+
+		}
+
+		let game = function() {
+			let playerScr = 0;
+			let compScr = 0;
+			console.log("Welcome to RPS mofucka. step up boyo.");
+			
+			for (i = 0; i < 5; i++) {
+				let playerSelection = prompt("rock paper or scissors, chief");
+				let computerSelection = computerPlay();
+				let result = playRound(playerSelection, computerSelection);
+				
+				if (result === 'You win!') {++playerScr; console.log(`okay, shorty. you win the round. you have`);}
+					else  if (result === 'Tie!') {console.log('tie'); i--; }
+					else {console.log('bummer, dude. you lost that one'); ++compScr}
+			}
+			if (playerScr > 2) {console.log('play on, playa. you win')}
+			else {console.log('tough luck, sucka. you lose')}
+		}
+
+
+        
+    </script>
+    
+    <body>
+    </body>
+
+    
+
+
+</html>
